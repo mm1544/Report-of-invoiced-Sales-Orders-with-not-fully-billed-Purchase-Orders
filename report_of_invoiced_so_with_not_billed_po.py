@@ -1,9 +1,9 @@
 # This script finds invoiced Sale Orders with not fully billed Purchase Orders, generates HTML for email template and
-# sends the email to designated person. Report covers one month period.
+# sends the email to the assigned person. Report covers one month period.
 
 HEADER_TEXT = 'Report of invoiced Sales Orders with not fully billed Purchase Orders'
-EMAIL_TO = 'martynas.minskis@gmail.com'
-EMAIL_CC = 'martynas.minskis@gmail.com'
+EMAIL_TO = 'person1@gmail.com'
+EMAIL_CC = 'person2@gmail.com'
 EMAIL_TEMPLATE_ID = 315
 EMAIL_SERVER_ID = 10
 TODAY_DATE = datetime.date.today()
@@ -161,7 +161,7 @@ def create_report_email_html(report_time_boundary):
   text_line_2 = 'Please see {}.'.format(HEADER_TEXT)
   text_line_2_2 = 'Covered period of time from <strong>{}</strong>'.format(report_time_boundary.strftime('%d/%m/%Y'))
   text_line_4 = 'Kind regards,'
-  text_line_5 = 'JTRS Odoo'
+  text_line_5 = 'Company-name Odoo'
   
   e = '<!--?xml version="1.0"?-->'
   e += '<div style="background:#F0F0F0;color:#515166;padding:10px 0px;font-family:Arial,Helvetica,sans-serif;font-size:12px;">'
@@ -218,7 +218,7 @@ def send_email(report_html):
   email_template.write({
     'body_html': report_html,
     'subject': email_subject,
-    'email_from': '"OdooBot" <odoobot@jtrs.co.uk>',
+    'email_from': '"OdooBot" <odoobot@company-name.co.uk>',
     'email_to': EMAIL_TO,
     'email_cc': EMAIL_CC,
     'mail_server_id': EMAIL_SERVER_ID
